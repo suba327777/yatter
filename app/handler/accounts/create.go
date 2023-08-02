@@ -17,6 +17,7 @@ type AddRequest struct {
 // Handle request for `POST /v1/accounts`
 func (h *handler) Create(w http.ResponseWriter, r *http.Request) {
 
+	ctx := r.Context()
 	var req AddRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -30,7 +31,14 @@ func (h *handler) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ctx := r.Context()
+	useAccount, err := h.ar.FindByUsername(ctx, account.Username)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	if useAccount != nil {
+		http.Error(w, "usernamme is already used", http.StatusBadRequest)
+	}
+
 	account.CreateAt = time.Now()
 	accountInsert := h.ar.Insert(ctx, account.Username, account.PasswordHash, account.CreateAt)
 	if err := accountInsert; err != nil {
