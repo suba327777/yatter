@@ -26,6 +26,7 @@ func (h *handler) Create(w http.ResponseWriter, r *http.Request) {
 	user := auth.AccountOf(r)
 	if user == nil {
 		http.Error(w, "unauthorized", http.StatusUnauthorized)
+		return
 	}
 
 	var req AddRequest
@@ -37,11 +38,13 @@ func (h *handler) Create(w http.ResponseWriter, r *http.Request) {
 	id, err := h.sr.Insert(ctx, user.ID, req.Status)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 
 	status, err := h.sr.FindById(ctx, id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 
 	res := object.Status{
@@ -54,6 +57,7 @@ func (h *handler) Create(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	if err := json.NewEncoder(w).Encode(res); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 
 }
