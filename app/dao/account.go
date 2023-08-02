@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"time"
 	"yatter-backend-go/app/domain/object"
 	"yatter-backend-go/app/domain/repository"
 
@@ -40,8 +39,8 @@ func (r *account) FindByUsername(ctx context.Context, username string) (*object.
 }
 
 // Insert : ユーザを追加
-func (r *account) Insert(ctx context.Context, username string, passwordHash string, createAt time.Time) error {
-	_, err := r.db.ExecContext(ctx, "insert into `account` (`username`, `password_hash`, `create_at`) values (?, ?, ?)", username, passwordHash, createAt)
+func (r *account) Insert(ctx context.Context, username string, passwordHash string) error {
+	_, err := r.db.ExecContext(ctx, "insert into `account` (`username`, `password_hash`) values (?, ?)", username, passwordHash)
 	if err != nil {
 		return err
 	}

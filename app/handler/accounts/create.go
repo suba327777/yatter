@@ -39,8 +39,7 @@ func (h *handler) Create(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "usernamme is already used", http.StatusBadRequest)
 	}
 
-	account.CreateAt = time.Now()
-	accountInsert := h.ar.Insert(ctx, account.Username, account.PasswordHash, account.CreateAt)
+	accountInsert := h.ar.Insert(ctx, account.Username, account.PasswordHash)
 	if err := accountInsert; err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
