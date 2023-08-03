@@ -18,3 +18,19 @@ CREATE TABLE `status`(
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_statuses_account_id` FOREIGN KEY (`account_id`) REFERENCES `account`(`id`)
 );
+
+CREATE TABLE `attachment`(
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255),
+  `url` text ,
+  `description` text,
+  PRIMARY KEY (`id`)
+)
+
+CREATE TABLE `attachment_binding`(
+  attachment_id bigint(20) NOT NULL,
+  status_id bigint(20) NOT NULL,
+  PRIMARY KEY (`attachment_id`, `status_id`),
+  CONSTRAINT `fk_attachment_binding_attachment_id` FOREIGN KEY (`attachment_id`) REFERENCES `attachment`(`id`),
+  CONSTRAINT `fk_attachment_binding_status_id` FOREIGN KEY (`status_id`) REFERENCES `status`(`id`)
+)
