@@ -40,7 +40,8 @@ jobs:
         run: go build -v ./...
 
       - name: docker compose
-        run: |
-          docker compose up -d
-          docker run yatter-backend-go-2023-template_web go test ./...
+        run: docker compose up -d
+
+      - name: run test
+        run: go test v./...
 
