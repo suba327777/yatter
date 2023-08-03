@@ -29,7 +29,7 @@ func (h *handler) FetchFollowing(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	followingAccounts, err := h.rr.FetchFollowingAccounts(ctx, account.ID, q.Limit)
+	followingAccounts, err := h.rr.FetchFollowing(ctx, account.ID, q.Limit)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
