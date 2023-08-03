@@ -12,7 +12,7 @@ import (
 	"yatter-backend-go/app/handler/statuses"
 )
 
-func NewRouter(ar repository.Account, sr repository.Status) http.Handler {
+func NewRouter(ar repository.Account, sr repository.Status, atr repository.Attachment, rr repository.Relationship) http.Handler {
 	r := chi.NewRouter()
 
 	// A good base middleware stack
@@ -27,8 +27,9 @@ func NewRouter(ar repository.Account, sr repository.Status) http.Handler {
 	// processing should be stopped.
 	r.Use(middleware.Timeout(60 * time.Second))
 
-	r.Mount("/v1/accounts", accounts.NewRouter(ar))
+	r.Mount("/v1/accounts", accounts.NewRouter(ar, rr))
 	r.Mount("/v1/statuses", statuses.NewRouter(ar, sr))
+	// r.Mound("vi/timelines/public", timelines.NewRouter(ar, sr, atr))
 	r.Mount("/v1/health", health.NewRouter())
 
 	return r
