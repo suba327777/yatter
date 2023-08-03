@@ -42,5 +42,5 @@ jobs:
       - name: docker compose
         run: |
           docker compose up -d
-          docker run yatter-backend-go-2023-template go test ./...
+          docker run yatter-backend-go-2023-template_web go test ./...
 
