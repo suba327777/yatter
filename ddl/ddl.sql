@@ -24,7 +24,7 @@ CREATE TABLE `relationship`(
   followed_id bigint(20) NOT NULL,
   PRIMARY KEY (`follower_id`, `followed_id`),
   CONSTRAINT `fk_relationship_follower_id` FOREIGN KEY (`follower_id`) REFERENCES `account`(`id`),
-  CONSTRAINT `fk_relationship_followed_id` FOREIGN KEY (`followed_id`) REFERENCES `account`(`id`),
+  CONSTRAINT `fk_relationship_followed_id` FOREIGN KEY (`followed_id`) REFERENCES `account`(`id`)
 );
 
 CREATE TABLE `attachment`(
