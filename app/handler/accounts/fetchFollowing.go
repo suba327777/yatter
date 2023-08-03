@@ -8,9 +8,6 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-const defaultLimit = 40
-const maxLimit = 80
-
 func (h *handler) FetchFollowing(w http.ResponseWriter, r *http.Request) {
 
 	ctx := r.Context()
