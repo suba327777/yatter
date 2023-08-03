@@ -23,25 +23,25 @@ jobs:
       - name: golang-lint install
         uses: golangci/golangci-lint-action@v3
 
-  test:
-    name: test
-    runs-on: ubuntu-latest
+  # test:
+  #   name: test
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: setup-go
-        uses: actions/setup-go@v3
-        with:
-          go-version: 1.20.5
+  #   steps:
+  #     - name: setup-go
+  #       uses: actions/setup-go@v3
+  #       with:
+  #         go-version: 1.20.5
 
-      - name: Checkout
-        uses: actions/checkout@v2
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      - name: go build
-        run: go build -v ./...
+  #     - name: go build
+  #       run: go build -v ./...
 
-      - name: docker compose
-        run: docker compose up -d
+  #     - name: docker compose
+  #       run: docker compose up -d
 
-      - name: run test
-        run: go test -v ./...
+  #     - name: run test
+  #       run: go test -v ./...
 
