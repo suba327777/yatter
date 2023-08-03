@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  test:
+  lint:
     name: lint
     runs-on: ubuntu-latest
 
@@ -23,6 +23,7 @@ jobs:
       - name: golang-lint install
         uses: golangci/golangci-lint-action@v3
 
+  test:
     name: test
     runs-on: ubuntu-latest
 
