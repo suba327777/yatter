@@ -11,5 +11,4 @@ type Account interface {
 	FindByUsername(ctx context.Context, username string) (*object.Account, error)
 	FindById(ctx context.Context, userId int64) (*object.Account, error)
 	Insert(ctx context.Context, username string, passwordHash string) error
-	FetchFollowingAccounts(ctx context.Context, userId int64, limit int64) ([]*object.Account, error)
 }
