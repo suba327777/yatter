@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: setup-go
-      - uses: actions/setup-go@v3
+        uses: actions/setup-go@v3
         with:
           go-version: 1.20.5
 
@@ -25,3 +25,4 @@ jobs:
 
       - name: lint-testing
         run: go test -shuffle on ./...
+
