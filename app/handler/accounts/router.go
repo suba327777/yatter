@@ -21,6 +21,7 @@ func NewRouter(ar repository.Account, rr repository.Relationship) http.Handler {
 	h := &handler{ar, rr}
 	r.Get("/{username}", h.Fetch)
 	r.Get("/{username}/following", h.FetchFollowing)
+	r.Get("/{username}/followers", h.FetchFollowers)
 	r.Post("/", h.Create)
 	r.With(auth.Middleware(ar)).Post("/{username}/follow", h.Follow)
 
