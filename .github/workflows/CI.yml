@@ -22,3 +22,6 @@ jobs:
 
       - name: golang-lint
         uses: golangci/golangci-lint-action@v3
+
+      - name: lint-testing
+        run: go test -shuffle on ./...
