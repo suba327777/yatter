@@ -29,10 +29,10 @@ services:
       - "8080:8080"
     environment:
       ENV: Development
+      MYSQL_HOST: "mysql:3306"
       MYSQL_DATABASE: yatter
       MYSQL_USER: yatter
       MYSQL_PASSWORD: yatter
-      MYSQL_HOST: "mysql:3306"
     depends_on:
       - mysql
     healthcheck:
